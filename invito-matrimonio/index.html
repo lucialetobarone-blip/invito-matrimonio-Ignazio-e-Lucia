@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lucia & Ignazio – Invito di matrimonio</title>
+
+<!-- Anteprima WhatsApp / Link pubblico -->
+<meta property="og:title" content="Lucia & Ignazio – Invito di matrimonio">
+<meta property="og:description" content="15 luglio 2026 – ore 15:30. Apri l'invito digitale.">
+<meta property="og:image" content="https://TUO_SITO.netlify.app/anteprima.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://TUO_SITO.netlify.app/">
+
+<meta name="theme-color" content="#FFF8F2">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400&family=Billa+Mount&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+background:#FFF8F2;
+font-family:'Cormorant SC', serif;
+color:#4A3F35;
+overflow-x:hidden;
+overflow-y:auto;
+}
+
+/* BUSTA */
+.envelope-container{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:80vw;
+max-width:420px;
+z-index:10;
+transition:opacity 0.8s ease;
+}
+.envelope-body{
+width:100%;
+border-radius:12px;
+display:block;
+}
+#envelopeVideo{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+display:none;
+border-radius:12px;
+}
+
+/* BOLLINO */
+.seal{
+position:absolute;
+bottom:14%;
+left:50%;
+transform:translateX(-50%);
+width:140px;
+height:60px;
+border-radius:40px;
+background:#D4B08C;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:8px;
+font-size:14px;
+cursor:pointer;
+animation:pulse 2s infinite;
+font-family:'Cormorant SC', serif;
+}
+@keyframes pulse{
+0%{transform:translateX(-50%) scale(1)}
+50%{transform:translateX(-50%) scale(1.05)}
+100%{transform:translateX(-50%) scale(1)}
+}
+
+/* FOGLIO */
+#paper{
+position:fixed;
+bottom:-100%;
+left:50%;
+transform:translateX(-50%);
+width:85vw;
+max-width:500px;
+height:90vh;
+background:white;
+border-radius:10px;
+box-shadow:0 25px 60px rgba(0,0,0,0.25);
+transition:all 1.2s ease;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:30px;
+z-index:5;
+overflow-y:auto;
+}
+#paper.show{bottom:5%;}
+#paper.fullscreen{width:100vw;height:100vh;bottom:0;border-radius:0;}
+#paper::before{
+content:"";
+position:absolute;
+top:0; left:0;
+width:100%; height:100%;
+background:url("https://png.pngtree.com/png-vector/20240724/ourmid/pngtree-transparent-almond-blossom-png-image_12931668.png") center no-repeat;
+background-size:cover;
+opacity:0.08;
+pointer-events:none;
+}
+
+/* NOMI SPOSI */
+.names{
+font-family:'Billa Mount', cursive;
+font-size:2.2em;
+opacity:0;
+transform:translateY(20px);
+transition:all 2s ease;
+position:relative;
+line-height:1.2em;
+}
+
+/* DETTAGLI */
+.details{
+font-weight:300;
+font-size:1.3em;
+margin-top:20px;
+opacity:0;
+transition:opacity 2s;
+position:relative;
+}
+
+/* LOCATION */
+.location{
+margin-top:25px;
+padding:14px 20px;
+background:rgba(212,176,140,0.15);
+border-radius:10px;
+cursor:pointer;
+opacity:0;
+transition:all 0.4s;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+}
+.location::after{
+content:"➜";
+font-size:18px;
+opacity:0.6;
+}
+.location:hover{
+background:rgba(212,176,140,0.25);
+transform:scale(1.03);
+}
+
+/* PETALI */
+.petal{
+position:fixed;
+top:-10px;
+font-size:18px;
+animation:fall linear forwards;
+}
+@keyframes fall{
+0%{transform:translateY(-10px) rotate(0deg); opacity:0;}
+10%{opacity:0.8;}
+100%{transform:translateY(100vh) rotate(360deg); opacity:0;}
+}
+
+@media(max-width:480px){
+.names{font-size:1.8em;}
+.details{font-size:1.1em;}
+.location{font-size:1em;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- BUSTA -->
+<div class="envelope-container" id="envelope">
+  <img src="https://TUO_SITO.netlify.app/busta_horizontal.png" class="envelope-body">
+  <div class="seal" id="seal">Clicca per aprire la busta</div>
+  <video id="envelopeVideo">
+    <source src="https://TUO_SITO.netlify.app/AZzcxH07ePLAwbsU60X2Pg-AZzcxH0748hDOZkwUIx8Gg.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- FOGLIO -->
+<div id="paper">
+  <div class="names">
+    Lucia Leto Barone<br>
+    <span style="font-size:0.9em; line-height:0.8em;">&</span><br>
+    Ignazio Alferi
+  </div>
+
+  <div class="details">Vi invitiamo a celebrare il nostro matrimonio<br>15 luglio 2026 alle ore 15:30</div>
+
+  <div class="location"
+    onclick="window.open('https://www.google.com/maps/search/?api=1&query=37.62296651016054,13.49123676427146','_blank')">
+    Cerimonia presso Chiesa Madre di Santo Stefano Quisquina (Santo Stefano Quisquina)
+  </div>
+
+  <div class="location"
+    onclick="window.open('https://www.google.com/maps/search/?api=1&query=37.38654919419435,13.553922280541892','_blank')">
+    Ricevimento presso Castello Ducale Colonna (Joppolo Giancaxio)
+  </div>
+
+  <div class="details" style="margin-top:40px;">Vi aspettiamo per celebrare con noi</div>
+</div>
+
+<script>
+const seal=document.getElementById("seal")
+const video=document.getElementById("envelopeVideo")
+const envelope=document.getElementById("envelope")
+const paper=document.getElementById("paper")
+
+seal.onclick=function(){
+  document.querySelector(".envelope-body").style.display="none"
+  seal.style.display="none"
+  video.style.display="block"
+  video.play()
+
+  video.onended=function(){
+    envelope.style.opacity="0"
+    setTimeout(()=>{ envelope.style.display="none" },800)
+
+    paper.classList.add("show")
+    setTimeout(()=>{ paper.classList.add("fullscreen") },1200)
+
+    setTimeout(()=>{
+      document.querySelectorAll(".names,.details,.location").forEach(el=>{
+        el.style.opacity=1
+        el.style.transform="translateY(0)"
+      })
+    },1800)
+
+    setInterval(creaPetalo,900)
+  }
+}
+
+function creaPetalo(){
+  let petal=document.createElement("div")
+  petal.classList.add("petal")
+  petal.innerHTML="🌸"
+  petal.style.left=Math.random()*100+"vw"
+  petal.style.animationDuration=5+Math.random()*5+"s"
+  document.body.appendChild(petal)
+  setTimeout(()=>{ petal.remove() },9000)
+}
+</script>
+
+</body>
+</html>
